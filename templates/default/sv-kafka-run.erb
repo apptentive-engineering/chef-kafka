@@ -1,5 +1,5 @@
 #!/bin/bash
 exec 2>&1
-exec chpst<% if node["kafka"]["env"] %> -e ./env<% end %> -u <%= node["kafka"]["user"] %> \
+exec chpst<% if !node["kafka"]["service_env"].empty? %> -e ./env<% end %> -u <%= node["kafka"]["user"] %> \
   <%= node["kafka"]["current_path"] %>/bin/kafka-server-start.sh \
   <%= node["kafka"]["current_path"] %>/config/server.properties
