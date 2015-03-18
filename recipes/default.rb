@@ -38,7 +38,7 @@ user node["kafka"]["user"] do
 end
 
 user_ulimit node["kafka"]["user"] do
-  filehandle_limit 262_144
+  filehandle_limit node["kafka"]["filehandle_limit"]
 end
 
 full_version  = "#{node["kafka"]["scala_version"]}-#{node["kafka"]["version"]}"
