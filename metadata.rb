@@ -7,3 +7,4 @@ long_description "Installs and configures kafka"
 version          "0.1.0"
 
 depends "runit", "~> 1.5.14"
+depends "ulimit", "~> 0.3"
