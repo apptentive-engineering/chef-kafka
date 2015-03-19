@@ -18,3 +18,5 @@ default["kafka"]["log_dirs"] = ["/tmp/kafka-logs"]
 default["kafka"]["zookeeper_nodes"] = []
 default["kafka"]["zookeeper_discovery"] = false
 default["kafka"]["exhibitor_endpoint"]  = nil
+
+default["kafka"]["filehandle_limit"] = 262_144

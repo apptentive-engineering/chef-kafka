@@ -37,6 +37,10 @@ user node["kafka"]["user"] do
   system  true
 end
 
+user_ulimit node["kafka"]["user"] do
+  filehandle_limit node["kafka"]["filehandle_limit"]
+end
+
 full_version  = "#{node["kafka"]["scala_version"]}-#{node["kafka"]["version"]}"
 download_url  = "#{node["kafka"]["apache_mirror"]}/kafka/#{node["kafka"]["version"]}/kafka_#{full_version}.tgz"
 kafka_archive = "#{Chef::Config[:file_cache_path]}/#{File.basename(download_url)}"
