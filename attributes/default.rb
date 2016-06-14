@@ -1,5 +1,5 @@
-default["kafka"]["version"] = "0.8.2.0"
-default["kafka"]["scala_version"] = "2.10"
+default["kafka"]["version"] = "0.9.0.1"
+default["kafka"]["scala_version"] = "2.11"
 
 default["kafka"]["apache_mirror"] = "http://apache.osuosl.org"
 
@@ -16,7 +16,7 @@ default["kafka"]["broker_id"] = nil
 default["kafka"]["log_dirs"] = ["/tmp/kafka-logs"]
 
 default["kafka"]["zookeeper_nodes"] = []
-default["kafka"]["zookeeper_discovery"] = false
+default["kafka"]["zookeeper_discovery"] = true
 default["kafka"]["exhibitor_endpoint"]  = nil
 
 default["kafka"]["filehandle_limit"] = 262_144

@@ -66,21 +66,6 @@ execute "unpack kafka" do
   action :nothing
 end
 
-link node["kafka"]["current_path"] do
-  to version_path
-  notifies :restart, "runit_service[kafka]"
-end
-
-node["kafka"]["log_dirs"].each do |log_dir|
-  directory log_dir do
-    owner node["kafka"]["user"]
-    group node["kafka"]["group"]
-    recursive true
-  end
-end
-
-raise if node["kafka"]["broker_id"].nil?
-
 if node["kafka"]["zookeeper_discovery"]
   require "open-uri"
   require "json"
@@ -96,10 +81,28 @@ end
 
 raise if node["kafka"]["zookeeper_nodes"].empty?
 
-template "#{node["kafka"]["current_path"]}/config/server.properties" do
+directory "#{version_path}/config" do
+  owner node["kafka"]["user"]
+  group node["kafka"]["group"]
+end
+
+template "#{version_path}/config/server.properties" do
   source "server.properties.erb"
   backup false
   notifies :restart, "runit_service[kafka]"
+end
+
+link node["kafka"]["current_path"] do
+  to version_path
+  notifies :restart, "runit_service[kafka]"
+end
+
+node["kafka"]["log_dirs"].each do |log_dir|
+  directory log_dir do
+    owner node["kafka"]["user"]
+    group node["kafka"]["group"]
+    recursive true
+  end
 end
 
 runit_service "kafka" do
