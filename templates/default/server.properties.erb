@@ -19,7 +19,8 @@
 # The id of the broker. This must be set to a unique integer for each broker.
 # If unset, a unique broker id will be generated. To avoid conflicts between
 # zookeeper generated broker id's and user configured broker id's, generated
-# broker idsstart from reserved.broker.max.id + 1.
+# broker ids start from reserved.broker.max.id + 1.
+
 broker.id=<%= node["kafka"]["broker_id"] %>
 broker.id.generation.enable=true
 
