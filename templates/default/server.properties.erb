@@ -21,7 +21,9 @@
 # zookeeper generated broker id's and user configured broker id's, generated
 # broker ids start from reserved.broker.max.id + 1.
 
-broker.id=<%= node["kafka"]["broker_id"] %>
+<% if node["kafka"]["broker_id"] %>
+  broker.id=<%= node["kafka"]["broker_id"] %>
+<% end %>
 broker.id.generation.enable=true
 
 ############################# Socket Server Settings #############################
