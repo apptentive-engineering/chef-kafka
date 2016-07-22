@@ -26,6 +26,13 @@
 <% end %>
 broker.id.generation.enable=true
 
+# The format between brokers, which should not be updated until all brokers have the underlying code for that version
+inter.broker.protocol.version=<%= node["kafka"]["broker_protocol_version"] %>
+
+# The message format stored in brokers
+# If an older consumer consumes a newer message type, the broker must down-convert it instead of using zero-copy transfer
+log.message.format.version=<%= node["kafka"]["log_message_format"] %>
+
 ############################# Socket Server Settings #############################
 
 listeners=PLAINTEXT://<%= node[:ipaddress] %>:9092
