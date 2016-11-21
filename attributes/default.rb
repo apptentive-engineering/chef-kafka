@@ -1,4 +1,4 @@
-default["kafka"]["version"] = "0.10.0.0"
+default["kafka"]["version"] = "0.10.1.0"
 default["kafka"]["broker_protocol_version"]="0.10.0.0"
 default["kafka"]["log_message_format"]="0.10.0.0"
 default["kafka"]["scala_version"] = "2.11"
