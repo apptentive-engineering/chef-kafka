@@ -21,4 +21,4 @@ default["kafka"]["zookeeper_nodes"] = []
 default["kafka"]["zookeeper_discovery"] = true
 default["kafka"]["exhibitor_endpoint"]  = nil
 
-default["kafka"]["filehandle_limit"] = 262_144
+default["kafka"]["filehandle_limit"] = 1_262_144
