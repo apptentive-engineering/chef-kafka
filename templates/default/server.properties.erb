@@ -136,5 +136,9 @@ zookeeper.connect=<%= node["kafka"]["zookeeper_nodes"].join(?,) %>
 # Timeout in ms for connecting to zookeeper
 zookeeper.connection.timeout.ms=6000
 
+# "Sensible Defaults"
+auto.create.topics.enable=false
+log.message.timestamp.type=LogAppendTime
 default.replication.factor=3
 delete.topic.enable=true
+
