@@ -59,14 +59,14 @@ end
 remote_file kafka_archive do
   source download_url
   notifies :run, "execute[unpack kafka]"
-  not_if kafka_already_installed
+  not_if { kafka_already_installed }
 end
 
 execute "unpack kafka" do
   user node["kafka"]["user"]
   command "bsdtar -xf #{kafka_archive} -C #{version_path} --strip 1"
   action :nothing
-  not_if kafka_already_installed
+  not_if { kafka_already_installed }
 end
 
 if node["kafka"]["zookeeper_discovery"]
