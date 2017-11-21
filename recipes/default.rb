@@ -45,6 +45,7 @@ full_version  = "#{node["kafka"]["scala_version"]}-#{node["kafka"]["version"]}"
 download_url  = "#{node["kafka"]["apache_mirror"]}/kafka/#{node["kafka"]["version"]}/kafka_#{full_version}.tgz"
 kafka_archive = "#{Chef::Config[:file_cache_path]}/#{File.basename(download_url)}"
 version_path  = "#{node["kafka"]["versions_dir"]}/#{full_version}"
+kafka_already_installed = ::File.exists?(::File.join(version_path, 'libs', "kafka_#{full_version}.jar"))
 
 package "bsdtar"
 
@@ -58,12 +59,14 @@ end
 remote_file kafka_archive do
   source download_url
   notifies :run, "execute[unpack kafka]"
+  not_if kafka_already_installed
 end
 
 execute "unpack kafka" do
   user node["kafka"]["user"]
   command "bsdtar -xf #{kafka_archive} -C #{version_path} --strip 1"
   action :nothing
+  not_if kafka_already_installed
 end
 
 if node["kafka"]["zookeeper_discovery"]

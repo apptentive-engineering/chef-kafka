@@ -4,7 +4,7 @@ maintainer_email "engineering@apptentive.com"
 license          "mit"
 description      "Installs and configures kafka"
 long_description "Installs and configures kafka"
-version          "0.3.2"
+version          "0.3.3"
 
 depends "runit", "~> 1.5.14"
 depends "ulimit", "~> 0.3"
